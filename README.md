@@ -14,7 +14,6 @@
 
 ## Setting up your pro api key
 The api key needs to be a global env variable in your cli environment
-- Run `export LOCALSTACK_API_KEY=6JweLSJsrT` to add the env variable (this is my trial key)
 - set `- LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }` under environment in your docker.compose.yml
 
 
