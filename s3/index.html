@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Connect Data Docs</title>
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+</head>
+<body>
+<style>
+html {
+    scroll-behavior: smooth;
+}
+:not(pre):not(.hljs) > code {
+    color: #F5871F !important;
+}
+</style>
+<div align="center"><h1>Envase Connect Integration Guide</h1></div>
+<p><a href="https://envasetechnologies.com/" target="_blank" rel="noreferrer"><div align="center"><img style="max-height: 20vh;" alt="Envase Technologies Logo" src="./envase_technologies_logo.jpeg"></p>
+</div></a>
+<hr>
+<h2 id="table-of-contents">Table of Contents</h2>
+<hr>
+<br>
+<ol>
+<li>
+<p><a href="#1-acquiring-credentials-for-envase-connect">Acquiring Credentials for Envase Connect</a></p>
+</li>
+<li>
+<p><a href="#2-authorizing-your-api-against-envase-connect">Authorizing Your API Against Envase Connect</a></p>
+</li>
+<li>
+<p><a href="#3-validating-events-sent-by-envase-connect">Validating Events Sent By Envase Connect</a></p>
+<ul>
+<li>
+<p><a href="#x-envase-connect-signature-256-header">X-Envase-Connect-Signature-256 Header</a></p>
+</li>
+<li>
+<p><a href="#create-a-signing-key">Create a Signing Key</a></p>
+</li>
+<li>
+<p><a href="#verify-x-envase-connect-signature-256">Verify X-Envase-Connect-Signature-256</a></p>
+</li>
+<li>
+<p><a href="#preventing-replay-attacks">Preventing Replay Attacks</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#4-the-envase-event">The Envase Event</a></p>
+</li>
+<li>
+<p><a href="#5-registering-webhooks-to-receive-events">Registering Webhooks to Receive Events</a></p>
+<ul>
+<li><a href="#webhook-filters">Webhook Filters</a>
+<br></li>
+</ul>
+</li>
+<li>
+<p><a href="#6-publishing-events">Publishing Events</a></p>
+</li>
+</ol>
+<br>
+<hr>
+<h2 id="1-acquiring-credentials-for-envase-connect">1. Acquiring Credentials for Envase Connect</h2>
+<hr>
+<p>Please email <a href="mailto:envaseconnectdev@envasetechnologies.com?Connect Data Access" rel="noreferrer">envaseconnectdev@envasetechnologies.com</a> with:</p>
+<ul>
+<li>Your company name</li>
+<li>All Envase systems you currently use</li>
+<li>Description of why you need access</li>
+</ul>
+<p>You will then be issued with the following credentials:</p>
+<ul>
+<li>Client ID</li>
+<li>Client Secret</li>
+</ul>
+<p><em>Please store these credentials in a secure location.</em>
+<br><br></p>
+<hr>
+<h2 id="2-authorizing-your-api-against-envase-connect">2. Authorizing Your API Against Envase Connect</h2>
+<hr>
+Once you have acquired your client credentials, you can use them to make a Basic authorization call to any of the following URLs:
+<ul>
+<li>Test: <code>https://envase-dev.auth.us-east-1.amazoncognito.com/oauth2/token</code></li>
+<li>Sandbox: <code>https://envase-stg.auth.us-east-1.amazoncognito.com/oauth2/token</code></li>
+<li>Production: <code>https://envase.auth.us-east-1.amazoncognito.com/oauth2/token</code></li>
+</ul>
+<p>You will also need to provide the following query parameters and make sure they are <strong>x-www-form-urlencoded</strong>:</p>
+<ul>
+<li><code>grant_type=client_credentials</code></li>
+<li><code>scope=connectdata/events</code></li>
+</ul>
+<p>The full URL will then look as follows:</p>
+<p><code>https://envase-dev.auth.us-east-1.amazoncognito.com/oauth2/token?scope%3Dconnectdata%2Fevents%26grant_type%3Dclient_credentials</code></p>
+<p>When successful, this call will return a JSON Web Token (JWT) that can be used as the authentication header when publishing events. This JWT will remain valid for 1 hour.<br><br></p>
+<hr>
+<h2 id="3-validating-events-sent-by-envase-connect">3. Validating Events Sent By Envase Connect</h2>
+<hr>
+Envase Connect uses an HMAC256 signature header that consumers can use to verify the authenticity of the event received.
+<br><br>
+<h3 id="x-envase-connect-signature-256-header">X-Envase-Connect-Signature-256 Header</h3>
+<hr>
+The X-Envase-Connect-Signature-256 header is created by concatenating the following:
+<ul>
+<li>
+<p>UTC timestamp</p>
+</li>
+<li>
+<p>A comma</p>
+</li>
+<li>
+<p>The signed payload</p>
+</li>
+</ul>
+<p>Below is an example of a complete header (new lines have been added to help with readability):</p>
+<pre class="hljs"><code><div>X-Envase-Connect-Signature-256=
+
+t=1492774577,
+
+v1=eb6bcee763697846d201883b40719be2631518d1a23487e0073c43e74004653
+</div></code></pre>
+<p>The signed payload string is created by concatenating:</p>
+<ul>
+<li>The timestamp</li>
+<li>The period character <code>[.]</code></li>
+<li>The actual JSON payload (i.e., the request body)</li>
+</ul>
+<p>Below is an example of a full signed payload:</p>
+<p><code>1492774577.{event}</code>
+<br><br></p>
+<h3 id="create-a-signing-key">Create a Signing Key</h3>
+<hr>
+<p>Your signing key is used to sign the <code>X-Envase-Connect-Signature-256</code> for each event we send to your endpoint. To create a valid signing key, use a random high entropy string (e.g., by taking the output of <code>ruby -rsecurerandom -e &quot;puts SecureRandom.hex(20)&quot;</code> at the terminal).</p>
+<p>Once a signing key has been created, set the signing key property when creating a webhook using the “signingKey” property, as in the example below:</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://your-domain.com/some-endpoint"</span>,
+  <span class="hljs-attr">"triggers"</span>: [
+    <span class="hljs-string">"APPROVED"</span>,
+    <span class="hljs-string">"REJECTED"</span>
+  ],
+  <span class="hljs-attr">"entityType"</span>: <span class="hljs-string">"GATE"</span>,
+  <span class="hljs-attr">"signingKey"</span>: <span class="hljs-string">"your-signing-key"</span>
+}
+</div></code></pre>
+<p>Be sure to store your signing key in a secure location as it will need to be retrieved in the future to verify the signature header of events you receive.</p>
+<p>When your signing key is set, Envase Connect uses it to create a hash signature with each payload. This hash signature is included with the headers of each request as <code>X-Envase-Connect-Signature-256</code>.
+<br><br></p>
+<h3 id="verify-x-envase-connect-signature-256">Verify X-Envase-Connect-Signature-256</h3>
+<hr>
+<p>To verify the X-Envase-Connect-Signature-256 do the following:</p>
+<ul>
+<li>
+<p>Parse the X-Envase-Connect</p>
+</li>
+<li>
+<p>Signature-256 header getting the UTC timestamp and signed payload.</p>
+</li>
+<li>
+<p>Compute an HMAC with the SHA256 hash function. Use the endpoint’s signing key as the key, UTC timestamp, and the event payload string as the message</p>
+</li>
+<li>
+<p>Compare the signature in the header to the expected signature</p>
+</li>
+<li>
+<p>For an equality match, compute the difference between the current timestamp and the received timestamp, then decide if the difference is within your tolerance</p>
+</li>
+</ul>
+<p>Node TS create HMAC 256 hash example using <code>crypto-js</code> npm package:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> crypto <span class="hljs-keyword">from</span> <span class="hljs-string">'crypto-js'</span>;
+
+<span class="hljs-keyword">const</span> hmac256Hash: <span class="hljs-built_in">string</span> = crypto.enc.Hex.stringify(
+    crypto.HmacSHA256(
+  		<span class="hljs-string">`<span class="hljs-subst">${utcTimestamp}</span>.<span class="hljs-subst">${<span class="hljs-built_in">JSON</span>.stringify(event)}</span>`</span>,
+  		process.env.SECRET_KEY
+    )
+);
+</div></code></pre>
+<h3 id="preventing-replay-attacks">Preventing Replay Attacks</h3>
+<hr>
+<p>A <a href="https://en.wikipedia.org/wiki/Replay_attack" target='_blank' rel='noreferrer'>replay attack</a> is when an attacker intercepts a valid payload and its signature, then re-transmits them. To mitigate such attacks, Envase includes a timestamp in the <code>X-Envase-Connect-Signature-256</code> header. Because this timestamp is part of the signed payload, it is also verified by the signature, so an attacker cannot change the timestamp without invalidating the signature. If the signature is valid but the timestamp is too old, you can have your application reject the payload.
+<br><br></p>
+<hr>
+<h2 id="4-the-envase-event">4. The Envase Event</h2>
+<hr>
+When publishing events to Envase connect, the following event properties are required:
+<ul>
+<li>
+<p>Action: the type of action</p>
+</li>
+<li>
+<p>Type: Type of event you are publishing e.g. GATE, ORDER, etc.</p>
+</li>
+<li>
+<p>Payload: Expected payload. The structure of each payload can be found: <a href="http://connectdocs.envaseconnect.cloud/" target="_blank" rel="noreferrer">http://connectdocs.envaseconnect.cloud/</a></p>
+</li>
+</ul>
+<p>The below example publishes a gate arrived event to Envase Connect</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"ARRIVED"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"GATE"</span>,
+    <span class="hljs-attr">"payload"</span>: {
+      <span class="hljs-comment">// gate object here</span>
+    }
+}
+</div></code></pre>
+<p>When an event is published, some properties may be added to the event by Envase Connect. The original payload, however, is not changed.
+<br><br></p>
+<hr>
+<h2 id="5-registering-webhooks-to-receive-events">5. Registering Webhooks to Receive Events</h2>
+<hr>
+<p>The endpoints you will send webhook requests to can be found: <a href="http://connectdocs.envaseconnect.cloud/" target="_blank" rel="noreferrer">http://connectdocs.envaseconnect.cloud/</a></p>
+<p>To receive any events from Envase Connect, the webhooks must first be registered. Envase Connect will need the following properties to be able to have a webhook registered:</p>
+<ul>
+<li>
+<p>URL: Your URL endpoint that will receive the event.</p>
+</li>
+<li>
+<p>Triggers: The event “actions” you will need to be notified of</p>
+</li>
+<li>
+<p>Entity Type: The type of event entity you are publishing</p>
+</li>
+<li>
+<p>Signing Key: This is the key generated in Section 3.B. of this document.</p>
+</li>
+</ul>
+<p>The example below would create a webhook that is notified when any of the follow events happen for you from the Gate Management System (GMS):</p>
+<pre class="hljs"><code><div>{
+  <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://your-domain.com/some-endpoint"</span>,
+  <span class="hljs-attr">"triggers"</span>: [
+    <span class="hljs-string">"APPROVED"</span>,<span class="hljs-string">"REJECTED"</span>,
+    <span class="hljs-string">"REJECTED_INVALID_BOOKING"</span>,
+    <span class="hljs-string">"REJECTED_EXPIRED_BOOKING"</span>,
+    <span class="hljs-string">"INTERCHANGE_PROCESSED"</span>, <span class="hljs-comment">// optionally</span>
+  ],
+  <span class="hljs-attr">"entityType"</span>: <span class="hljs-string">"GATE"</span>,
+  <span class="hljs-attr">"signingKey"</span>: <span class="hljs-string">"your-signing-key"</span>,
+  <span class="hljs-attr">"filters"</span>: [
+      {
+          <span class="hljs-attr">"payload.location.streetAddress1"</span>: <span class="hljs-string">"1 Fine Arts Dr"</span>,
+          <span class="hljs-attr">"payload.location.city"</span>: <span class="hljs-string">"St. Louis"</span>,
+          <span class="hljs-attr">"payload.location.state"</span>: <span class="hljs-string">"MO"</span>
+      }
+  ]
+}
+</div></code></pre>
+<br>
+<h3 id="webhook-filters">Webhook Filters</h3>
+<hr>
+<p>In order to get notified about specific events, you can use optional filters when creating the webhook. An example of a single filter can be seen above. In this example, the webhook will only be created if  <code>ALL</code> of the conditions inside the object are true. So, in order for this webhook to be created, the Gate event must meet the filter criteria:</p>
+<ul>
+<li>Address is &quot;1 Fine Arts Dr&quot;</li>
+<li>City is St Louis</li>
+<li>State is MO
+<br><br></li>
+</ul>
+<p>If any of these conditions are not true or not found, the webhook will not be created.</p>
+<p>You can filter for <code>ANY</code> property in the given event. You can also create multiple webhooks based on the filter criteria. An example of how this works is:</p>
+<pre class="hljs"><code><div><span class="hljs-string">"filters"</span>: [
+      {
+          <span class="hljs-attr">"tmsId"</span>: <span class="hljs-string">"abc123"</span>, <span class="hljs-comment">// AND</span>
+          <span class="hljs-attr">"payload.chassis.licensePlate"</span>: <span class="hljs-string">"123ABC"</span>, <span class="hljs-comment">// AND</span>
+          <span class="hljs-attr">"payload.location.streetAddress1"</span>: <span class="hljs-string">"1 Fine Arts Dr"</span>
+      },
+
+      <span class="hljs-comment">// OR</span>
+
+      {
+          <span class="hljs-attr">"orgId"</span>: <span class="hljs-string">"def456"</span>, <span class="hljs-comment">// AND</span>
+          <span class="hljs-attr">"tmsId"</span>: <span class="hljs-string">"789hij"</span>
+      },
+
+      <span class="hljs-comment">// OR</span>
+
+      {
+          <span class="hljs-attr">"payload.container.streetAddress1"</span>: <span class="hljs-string">"123456"</span>,
+      }
+  ]
+
+</div></code></pre>
+<p>Starting from the top, the first filter will subscribe you to events where:</p>
+<ul>
+<li><code>tmsId = &quot;abc123&quot;</code> AND</li>
+<li><code>payload.chassis.licensePlate = &quot;123ABC&quot;</code> AND</li>
+<li><code>payload.location.streetAddress1 = &quot;1 Fine Arts Dr&quot;</code></li>
+</ul>
+<p><strong>OR</strong></p>
+<p>The second filter will subscribe you to events where:</p>
+<ul>
+<li><code>orgId = &quot;def456&quot;</code> AND</li>
+<li><code>tmsId = &quot;789hij&quot;</code></li>
+</ul>
+<p><strong>OR</strong></p>
+<p>The third filter will subscribe you to events where:</p>
+<ul>
+<li><code>payload.container.streetAddress1 = 123456</code></li>
+</ul>
+<p>If any of criteria in a filter object is not true or not found, the webhook will not be created for that filter and the next filter object will be tried.</p>
+<p>If all of the filter criteria are found and are also true, then all of the webhooks will be created with the matching filters.</p>
+<p>If some of the filter criteria are <code>true/found</code> but others inside the same filter object are not, then the webhook will not be created. For example, in the first filter, if the <code>tmsId</code> and <code>licensePlate</code> values are <code>true/found</code> but the <code>streetAddress1</code> is not, then the webhook will not be created and the second filter will be tried.</p>
+<br>
+<hr>
+<h2 id="6-publishing-events">6. Publishing Events</h2>
+<hr>
+<p>Envase Connect allows a wide variety of events to be published. The specific details of the structure of each Event, including required properties and accepted property values, can be found here: <a href="#4-the-envase-event">The Envase Event</a></p>
+<p>Below is an example of a Gate “Arrived” Event:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"action"</span>: <span class="hljs-string">"ARRIVED"</span>,
+    <span class="hljs-attr">"type"</span>: <span class="hljs-string">"GATE"</span>,
+    <span class="hljs-attr">"payload"</span>: {
+        <span class="hljs-attr">"location"</span>: {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"your yard id"</span>,
+            <span class="hljs-attr">"streetAddress1"</span>: <span class="hljs-string">"1 Fine Arts Dr"</span>,
+            <span class="hljs-attr">"city"</span>: <span class="hljs-string">"St. Louis"</span>,
+            <span class="hljs-attr">"state"</span>: <span class="hljs-string">"MO"</span>,
+            <span class="hljs-attr">"zipCode"</span>: <span class="hljs-string">"63110"</span>
+        },
+        <span class="hljs-attr">"truck"</span>: {
+            <span class="hljs-attr">"licensePlate"</span>: <span class="hljs-string">"E54D23"</span>,
+            <span class="hljs-attr">"axles"</span>: <span class="hljs-number">6</span>,
+            <span class="hljs-attr">"length"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"weight"</span>: <span class="hljs-number">1200</span>,
+            <span class="hljs-attr">"width"</span>: <span class="hljs-number">10</span>
+        },
+        <span class="hljs-attr">"container"</span>: {
+            <span class="hljs-attr">"length"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"weight"</span>: <span class="hljs-number">1200</span>,
+            <span class="hljs-attr">"width"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"containerNumber"</span>: <span class="hljs-string">"333212"</span>
+        },
+        <span class="hljs-attr">"gateType"</span>: <span class="hljs-string">"IN"</span>,
+        <span class="hljs-attr">"chassis"</span>: {
+            <span class="hljs-attr">"length"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"width"</span>: <span class="hljs-number">10</span>,
+            <span class="hljs-attr">"axles"</span>: <span class="hljs-number">6</span>,
+            <span class="hljs-attr">"licensePlate"</span>: <span class="hljs-string">"123ABC"</span>
+        },
+        <span class="hljs-attr">"operator"</span>: <span class="hljs-string">"yard-operator-id"</span>
+    }
+}
+</div></code></pre>
+<p>The GMS will be subscribed to these events and run logic such as equipment check in/out or verify the booking number given is a valid booking.</p>
+
+</body>
+</html>
